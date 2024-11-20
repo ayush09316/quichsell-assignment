@@ -20,6 +20,10 @@ export const dropdownOptions = [
         label:"Sorting",
         submenu:[
             {
+                label:"Default",
+                value:"default"
+            },
+            {
                 label:"Title",
                 value:"title"
             },
@@ -46,7 +50,7 @@ export const columnName ={
         options: [
             {icon: './Backlog.svg', label: 'Backlog',data:[] },
            { icon: './todo.svg', label: 'Todo',data:[] },
-            { icon: './in-progress.svg', label: 'In progress',data:[] },
+            { icon: './progress.svg', label: 'In progress',data:[] },
             { icon: './done.svg', label: 'Done',data:[] },
             {icon: './cancel.svg', label: 'Cancelled',data:[] },
             
@@ -54,7 +58,7 @@ export const columnName ={
     },
     "users":{
         options:[
-            
+
         ]
     }
 }

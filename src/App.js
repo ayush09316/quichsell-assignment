@@ -11,18 +11,19 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedValues, setSelectedValues] = useState({
-    dropdown1: 'status',
-    dropdown2: null,
+    groupBy: 'status',
+    orderBy: null,
   });
 
-  const handleSelect = (dropdownKey, value) => {
-    setSelectedValues((prev) => ({
-      ...prev,
-      [dropdownKey]: value, // Update the value for the specific dropdown
-    }));
+  const handleSelect = (value,index) => {
+    if(index===0){
+        setSelectedValues({ ...selectedValues, groupBy: value });
+    }else{
+        setSelectedValues({ ...selectedValues, orderBy: value });
+    }
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     const loadData = async () => {
       try {
         const data = await fetchData();
@@ -42,7 +43,7 @@ const App = () => {
   const handleTicketDrop = (ticketId, newGroup) => {
     const updatedTickets = tickets.map((ticket) => {
       if (ticket.id === ticketId) {
-        return { ...ticket, [selectedValues.dropdown1]: newGroup }; // Update the group based on the selected groupBy field
+        return { ...ticket, [selectedValues.groupBy]: newGroup }; // Update the group based on the selected groupBy field
       }
       return ticket;
     });
@@ -67,8 +68,9 @@ const App = () => {
       />
       <KanbanBoard
         tickets={tickets}
-        groupBy={selectedValues.dropdown1}
-        onTicketDrop={handleTicketDrop} // Pass the drop handler to KanbanBoard
+        groupBy={selectedValues.groupBy}
+        orderBy={selectedValues.orderBy}
+        onTicketDrop={handleTicketDrop} 
       />
     </>
   );
