@@ -15,12 +15,28 @@ const App = () => {
     orderBy: null,
   });
 
-  const handleSelect = (value,index) => {
-    if(index===0){
-        setSelectedValues({ ...selectedValues, groupBy: value });
-    }else{
-        setSelectedValues({ ...selectedValues, orderBy: value });
+  // Load the selected values from localStorage when the component mounts
+  useEffect(() => {
+    const savedSelectedValues = JSON.parse(localStorage.getItem('selectedValues'));
+    if (savedSelectedValues) {
+      setSelectedValues(savedSelectedValues);
     }
+  }, []);
+
+  const handleSelect = (value, index) => {
+    const newSelectedValues = { ...selectedValues };
+
+    if (index === 0) {
+      newSelectedValues.groupBy = value;
+    } else {
+      newSelectedValues.orderBy = value;
+    }
+
+    // Update the state with the new selected values
+    setSelectedValues(newSelectedValues);
+
+    // Persist the selected values to localStorage
+    localStorage.setItem('selectedValues', JSON.stringify(newSelectedValues));
   };
 
   useEffect(() => { 
@@ -52,7 +68,7 @@ const App = () => {
   };
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (error) {
@@ -62,9 +78,9 @@ const App = () => {
   return (
     <>
       <Dropdown
-      dropdownOptions={dropdownOptions}
-      selected={selectedValues}
-      handleSelect={handleSelect}
+        dropdownOptions={dropdownOptions}
+        selected={selectedValues}
+        handleSelect={handleSelect}
       />
       <KanbanBoard
         tickets={tickets}

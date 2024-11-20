@@ -5,7 +5,7 @@ import {mapTicketsWithUsers, transformApiData } from "../utils";
 
 const KanbanBoard = ({ tickets, groupBy, onTicketDrop,orderBy ,users}) => {
   const updatedtickets = mapTicketsWithUsers(tickets, users);
-  const updatedColumnName = transformApiData(updatedtickets, groupBy, columnName,orderBy);
+  const updatedColumnName = transformApiData(updatedtickets, groupBy, columnName,orderBy,users);
 
   const handleDragStart = (e, ticketId) => {
     e.dataTransfer.setData("ticketId", ticketId);
