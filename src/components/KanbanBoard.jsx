@@ -1,10 +1,11 @@
 import React from "react";
 import TicketCard from "./TicketCard";
 import { columnName } from "../constants";
-import {transformApiData } from "../utils";
+import {mapTicketsWithUsers, transformApiData } from "../utils";
 
-const KanbanBoard = ({ tickets, groupBy, onTicketDrop,orderBy }) => {
-  const updatedColumnName = transformApiData(tickets, groupBy, columnName,orderBy);
+const KanbanBoard = ({ tickets, groupBy, onTicketDrop,orderBy ,users}) => {
+  const updatedtickets = mapTicketsWithUsers(tickets, users);
+  const updatedColumnName = transformApiData(updatedtickets, groupBy, columnName,orderBy);
 
   const handleDragStart = (e, ticketId) => {
     e.dataTransfer.setData("ticketId", ticketId);

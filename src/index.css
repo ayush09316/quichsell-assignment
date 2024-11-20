@@ -166,6 +166,41 @@ h1 {
   gap: 10px;
 }
 
+.card-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  position: relative;
+  align-items: center;
+}
+
+.card-header h6{
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: #acabab;
+  text-align: center;
+  line-height: 25px;
+  color: white;
+  font-size: 14px;
+}
+.offline,.online{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 18px;
+  right: -1px;
+  border-radius: 100%;
+  border: 2px solid white;
+}
+.online{
+  background-color: rgb(50, 225, 50);
+}
+.offline{
+  background-color: rgb(250, 15, 15);
+}
+
 .card-title{
   display: flex;
   align-items: center; 

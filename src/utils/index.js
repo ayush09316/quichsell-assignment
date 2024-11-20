@@ -39,3 +39,21 @@ export const sortTicketsByTitle = (tickets) => {
 export const sortTicketsByPriorityDesc = (tickets) => {
   return tickets.slice().sort((a, b) => b.priority - a.priority);
 };
+
+
+export const mapTicketsWithUsers = (tickets, users) => {
+  // Create a user map for quick lookup
+  const userMap = users.reduce((acc, user) => {
+    acc[user.id] = user;
+    return acc;
+  }, {});
+
+  // Map tickets to include user details
+  return tickets.map((ticket) => {
+    const user = userMap[ticket.userId];
+    return {
+      ...ticket,
+      user, // Attach user details
+    };
+  });
+};

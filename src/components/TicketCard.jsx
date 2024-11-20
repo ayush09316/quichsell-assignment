@@ -2,7 +2,9 @@ import React from "react";
 import { columnName } from "../constants";
 
 const TicketCard = ({ ticket,handleDragStart,flag }) => {
+
   const icon= columnName.priority.options.find((item)=>item.weight===ticket.priority)?.icon;
+  const statusIcon= columnName.status.options.find((item)=>item.label===ticket.status)?.icon;
   return (
     <div
       key={ticket.id}
@@ -10,10 +12,16 @@ const TicketCard = ({ ticket,handleDragStart,flag }) => {
       draggable
       onDragStart={(e) => handleDragStart(e, ticket.id)}
     >
+      <div className="card-header">
       <h5>{ticket.id}</h5>
+      <h6>{ticket.user.name[0]}</h6>
+      {
+        ticket.user.available ? <div className="online"/>:<div className="offline"/>
+      }
+      </div>
      <div className="card-title">
      {
-        !flag && <img src={icon} alt="icon"/>
+        !flag && <img src={statusIcon} alt="icon"/>
       }
       <p>{ticket.title}</p>
      </div>

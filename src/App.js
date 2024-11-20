@@ -68,6 +68,7 @@ const App = () => {
       />
       <KanbanBoard
         tickets={tickets}
+        users={users}
         groupBy={selectedValues.groupBy}
         orderBy={selectedValues.orderBy}
         onTicketDrop={handleTicketDrop} 
